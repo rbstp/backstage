@@ -31,6 +31,10 @@ RUN pip3 install mkdocs-techdocs-core==1.1.7
 # From here on we use the least-privileged `node` user to run the backend.
 WORKDIR /app
 RUN chown node:node /app
+
+# Create Yarn directories with proper permissions before switching to node user
+RUN mkdir -p /home/node/.yarn/berry && chown -R node:node /home/node/.yarn
+
 USER node
 
 

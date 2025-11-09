@@ -1,0 +1,40 @@
+app:
+  title: Backstage
+  baseUrl: http://localhost:3000
+
+backend:
+  baseUrl: http://localhost:3000
+  listen:
+    port: 7007
+
+  auth:
+    dangerouslyDisableDefaultAuthPolicy: true
+
+  database:
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+
+auth:
+  environment: development
+  providers:
+    guest:
+      dangerouslyAllowOutsideDevelopment: true
+    # Override all other providers from app-config.yaml
+    github: null
+    google: null
+    gitlab: null
+    saml: null
+    okta: null
+    oauth2: null
+
+catalog:
+  rules:
+    - allow: [Component, System, API, Resource, Location]
+
+  locations:
+    - type: url
+      target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
