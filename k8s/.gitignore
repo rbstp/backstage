@@ -1,0 +1,3 @@
+# Ignore secret files to prevent committing sensitive data
+*-secrets.yaml
+*secrets.yaml
